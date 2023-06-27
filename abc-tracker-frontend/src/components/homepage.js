@@ -12,10 +12,20 @@ const HomePage = () => {
     setModalOpen(false);
   };
 
+  const handleEditVehicle = () => {
+    window.location.href = "/edit-vehicle";
+  };
+
+  const handleViewVehicles = () => {
+    window.location.href = "/view-vehicles";
+  };
+
   return (
     <div>
       {/* Your main home screen content */}
       <button onClick={handleOpenModal}>Add New Vehicle</button>
+      <button onClick={handleEditVehicle}>Edit Vehicle</button>
+      <button onClick={handleViewVehicles}>View Vehicles</button>
 
       {isModalOpen && <NewVehicleModal onClose={handleCloseModal} />}
     </div>
