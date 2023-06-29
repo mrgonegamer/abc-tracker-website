@@ -14,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cd abc-tracker-website/abc-tracker-frontend && react-scripts start",
     "build": "cd abc-tracker-frontend && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
