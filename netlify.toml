@@ -1,3 +1,3 @@
 [build]
-command = "cd abc-tracker-website/abc-tracker-frontend && npm install && npm run build"
+command = "cd abc-tracker-frontend && npm install && npm run build"
 publish = "abc-tracker-website/abc-tracker-frontend/build"
