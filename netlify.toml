@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "cd .\abc-tracker-frontend && npm install && npm run build"
   publish = "abc-tracker-frontend/build"
-  base = "abc-tracker-website/abc-tracker-frontend"
+  base = "abc-tracker-website"
 
