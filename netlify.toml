@@ -1,5 +1,5 @@
 [build]
   command = "npm run build"
   publish = "abc-tracker-frontend/build"
-  base = "abc-tracker-website"
+  base = "abc-tracker-website/abc-tracker-frontend"
 
