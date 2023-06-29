@@ -1,0 +1,3 @@
+[build]
+command = "npm run build --prefix abc-tracker-frontend"
+publish = "abc-tracker-frontend/build"
