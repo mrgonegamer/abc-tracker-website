@@ -11,10 +11,15 @@ const NewVehicleModal = ({ onClose }) => {
     onClose();
   };
 
+  const handleClose = () => {
+    window.location.href = "/homepage"; // Navigate to '/homepage' route
+  };
+
   return (
     <div className="modal-background">
       <div className="modal-content">
         <h1>New Vehicle</h1>
+        <button onClick={handleClose}>Close</button>
         <NewVehicle onSubmit={handleFormSubmit} />
       </div>
     </div>

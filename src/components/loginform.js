@@ -1,54 +1,31 @@
 import React, { useState } from "react";
 import "./loginform.css";
-import axios from "axios";
+import { DataStore } from "aws-amplify";
+import { User } from '../models';
 
 const LoginForm = () => {
   const [popupStyle, setPopupStyle] = useState("hide");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [text, setText] = useState(""); // Add the 'text' state
+  const [text, setText] = useState("");
 
   const handleLogin = async () => {
-    // Send a POST request to the backend API for login
     try {
-      const response = await axios.post("http://localhost:5000/login", { username, password });
+      // Fetch all users
+      const users = await DataStore.query(User);
   
-      if (response.status === 200) {
-        // Login successful
-        const data = response.data;
-        
-        if (data.message === "Login successful") {
-          // Redirect to homepage
-          window.location.href = "/homepage";
-        } else {
-          // Login failed, show error message
-          showPopup("Invalid username or password");
-        }
+      // Check if the provided username and password match any user
+      const matchedUser = users.find(user => user.username === username && user.password === password);
+  
+      if (matchedUser) {
+        // Redirect to homepage
+        window.location.href = "/homepage";
       } else {
-        // Login failed, show error message
-        showPopup("Login Failed");
+        showPopup("Invalid username or password");
       }
     } catch (error) {
       console.error("Error occurred during login:", error);
       showPopup("Login Failed");
-    }
-  };
-
-  const handleRegister = async () => {
-    // Send a POST request to the backend API for registration
-    try {
-      const response = await axios.post("http://localhost:5000/register", { username, password });
-
-      if (response.status === 200) {
-        // Registration successful, show success message
-        showPopup("Account Created");
-      } else {
-        // Registration failed, show error message
-        showPopup("Registration Failed");
-      }
-    } catch (error) {
-      console.error("Error occurred during registration:", error);
-      showPopup("Registration Failed");
     }
   };
 
@@ -80,10 +57,6 @@ const LoginForm = () => {
       <div className="login-btn" onClick={handleLogin}>
         Login
       </div>
-
-      <p className="register-btn" onClick={handleRegister}>
-        Or register
-      </p>
 
       <div className={`popup ${popupStyle}`}>
         <h3>{text}</h3>
